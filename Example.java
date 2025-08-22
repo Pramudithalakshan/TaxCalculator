@@ -50,7 +50,7 @@ class Example{
 			  case 4:
 			  ssclTax();
 			  case 5:
-			  //leasingTax();
+			  leasingPayment();
 			  case 6:
 			  //exit();
 			}
@@ -310,6 +310,36 @@ class Example{
 				
 			public static double vatTax(double st,double price){
 				 return ((st+price)*0.15)+st;
+				}
+		   public static void leasingPayment(){
+			   Scanner input = new Scanner(System.in);
+			    leasingPaymentHome();
+			    System.out.print("Enter an option to continue ->");
+			    int op = input.nextInt();
+			    switch(op){
+					 case 1:
+					 case 2:
+					 case 3:
+					 case 4:
+					 default:
+					}
+			   }
+				
+			public static void leasingPaymentHome(){
+				 Scanner input = new Scanner(System.in);
+				  System.out.println("+----------------------------------------------------------------------+");
+	              System.out.println("|                        Leasing Payment                               |");
+	              System.out.println("+----------------------------------------------------------------------+");
+	              System.out.println();
+	               System.out.printf("%7s%d%s%n","[",1,"] Calculate Monthly Installment");
+	               System.out.println();
+	               System.out.printf("%7s%d%s%n","[",2,"] Search Leasing Category");
+	               System.out.println();
+	               System.out.printf("%7s%d%s%n","[",3,"] Find Leasing Amount");
+	               System.out.println();
+	               System.out.printf("%7s%d%s%n","[",4,"] Exit");
+	               System.out.println();
+	              
 				}
 			
   }
