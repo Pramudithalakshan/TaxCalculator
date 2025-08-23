@@ -5,31 +5,28 @@ class Example{
 	  } //End of the main method
 	 
 	  public static void withHoldingTax(){                                //Start of the withHodingTax method 
-	    System.out.println("+----------------------------------------------------------------------+");
-	    System.out.println("|                        WITHHOLDING TAX                               |");
-	    System.out.println("+----------------------------------------------------------------------+");
-	 L1:while(true){
-		Scanner input = new Scanner(System.in);
-		System.out.printf("%7s%d%s%n","[",1,"] Rent Tax");
-	    System.out.println();
-	    System.out.printf("%7s%d%s%n","[",2,"] Bank Interest Tax");
-	    System.out.println();
-	    System.out.printf("%7s%d%s%n","[",3,"] Dividend Tax");
-	    System.out.println();
-	    System.out.printf("%7s%d%s%n","[",4,"] Exit");
-	    System.out.println();
-	    System.out.println();
+	    Scanner input = new Scanner(System.in);
+	    L1:while(true){
+	    withHoldingTaxHome();
 	    System.out.print("Enter an option to continue->");
 	    int option = input.nextInt();
 	    switch(option){
 			  case 1:
+			  clearConsole();
 			  rentTax();
+			  break;
 			  case 2:
+			  clearConsole();
 			  bankInterestTax();
+			  break;
 			  case 3:
+			  clearConsole();
 			  dividendTax();
+			  break;
 			  case 4:
-			  //exit();
+			  clearConsole();
+			  mainMenu();
+		      return;
 			  default:
 			  System.out.println("Enter Valid Input");
 			  System.out.println();
@@ -39,31 +36,36 @@ class Example{
 		   
 		 }
 	  }
-	       //RentTax method
+	   //RentTax method
 	  public static void rentTax(){
+		Scanner input = new Scanner(System.in);
+		RT:while(true){
 		System.out.println("+----------------------------------------------------------------------+");
 	    System.out.println("|                            RENT TAX                                  |");
 	    System.out.println("+----------------------------------------------------------------------+");
-	   RT:while(true){
-		  Scanner input = new Scanner(System.in);
+	  
 		  System.out.print("Enter Your Rent->");
 		  double payment = input.nextInt();
 		  if(payment>0 ){
-		    System.out.println(payment<100000?"You don't have to pay Rent Tax...":"Tax amount ->"+((payment-100000)*0.1)); 
+		    System.out.println(payment<100000?"\tYou don't have to pay Rent Tax...":"Tax amount ->"+((payment-100000)*0.1)); 
 		    L1:while(true){
 		    System.out.print("Do You Want To Calculate Rent Tax Again(Y/N)");
 		    String op = input.next().toUpperCase();
 		    switch(op){
 				case "Y":
+				clearConsole();
 				continue RT;
 				case "N":
-				break RT;
+				clearConsole();
+				withHoldingTax();
+				return;
 				default:
 				System.out.println("Please Enter Valid Input");
 				continue L1;
 				}
 			}
 	           }else{
+				     clearConsole();
 			         System.out.printf("%10s%n","Invalid Input Please Enter Valid Input");
 			         continue RT;
 			         }
@@ -72,11 +74,12 @@ class Example{
 	  }
 		   //BankInterest method
 	  public static void bankInterestTax(){
+		Scanner input = new Scanner(System.in);
+		BT:while(true){
 		System.out.println("+----------------------------------------------------------------------+");
 	    System.out.println("|                        BANK INTEREST TAX                             |");
 	    System.out.println("+----------------------------------------------------------------------+");
-		  BT:while(true){
-		  Scanner input = new Scanner(System.in);
+	
 		  System.out.print("Enter your bank interest per year->");
 		  double interest = input.nextInt();
 		  if(interest>0 ){
@@ -86,15 +89,19 @@ class Example{
 		    String op = input.next().toUpperCase();
 		    switch(op){
 				case "Y":
+				clearConsole();
 				continue BT;
 				case "N":
-				break BT;
+				clearConsole();
+				withHoldingTax();
+				return;
 				default:
 				System.out.println("Please Enter Valid Input");
 				continue L1;
 				}
 			}
 	           }else{
+				     clearConsole();
 			         System.out.printf("%10s%n","Invalid Input Please Enter Valid Input");
 			         continue BT;
 			         }
@@ -102,11 +109,12 @@ class Example{
 		  }
 	       //DividendTax method
 	  public static void dividendTax(){
+	    Scanner input = new Scanner(System.in);
+		RT:while(true){
 		System.out.println("+----------------------------------------------------------------------+");
 	    System.out.println("|                        DIVIDEND TAX                                  |");
 	    System.out.println("+----------------------------------------------------------------------+");
-		   RT:while(true){
-		  Scanner input = new Scanner(System.in);
+		  
 		  System.out.print("Enter Dividend ->");
 		  double payment = input.nextInt();
 		  if(payment>0 ){
@@ -116,15 +124,19 @@ class Example{
 		    String op = input.next().toUpperCase();
 		    switch(op){
 				case "Y":
+				clearConsole();
 				continue RT;
 				case "N":
-				break RT;
+				clearConsole();
+				withHoldingTax();
+				return;
 				default:
 				System.out.println("Please Enter Valid Input");
 				continue L1;
 				}
 			}
-	           }else{
+	           }else{ 
+				     clearConsole();
 			         System.out.printf("%10s%n","Invalid Input Please Enter Valid Input");
 			         continue RT;
 			         }
@@ -137,12 +149,13 @@ class Example{
 		//Start of the payable tax
 		public static void payableTax(){
 			Scanner input = new Scanner(System.in);
+			PT:while(true){
 			System.out.println("+----------------------------------------------------------------------+");
 	        System.out.println("|                        PAYABLE TAX                                   |");
 	        System.out.println("+----------------------------------------------------------------------+");
 	        System.out.println();
 	        System.out.println();
-	        PT:while(true){
+	      
 			System.out.print("Enter employee salary per month->");
 			double salary = input.nextInt();
 			if(salary>=0){
@@ -157,15 +170,19 @@ class Example{
 		    String op = input.next().toUpperCase();
 		    switch(op){
 				case "Y":
+				clearConsole();
 				continue PT;
 				case "N":
-				break PT;
+				clearConsole();
+				mainMenu();
+				return;
 				default:
 				System.out.println("Please Enter Valid Input");
 				continue L1;
 				}
 			}
-	           }else{
+	           }else{ 
+				     clearConsole();
 			         System.out.printf("%10s%n","Invalid Input Please Enter Valid Input");
 			         continue PT;
 			         }
@@ -174,13 +191,14 @@ class Example{
 		
 		//Start of the Income Tax method
 		public static void incomeTax(){
-			 Scanner input = new Scanner(System.in);
+			Scanner input = new Scanner(System.in);
+			 PT:while(true){
 			System.out.println("+----------------------------------------------------------------------+");
 	        System.out.println("|                         INCOME TAX                                   |");
 	        System.out.println("+----------------------------------------------------------------------+");
 	        System.out.println();
 	        System.out.println();
-	         PT:while(true){
+	         
 			System.out.print("Enter income per year->");
 			double income = input.nextInt();
 			if(income>=0){
@@ -198,15 +216,19 @@ class Example{
 		    String op = input.next().toUpperCase();
 		    switch(op){
 				case "Y":
+				clearConsole();
 				continue PT;
 				case "N":
-				break PT;
+				clearConsole();
+				mainMenu();
+				return;
 				default:
 				System.out.println("Please Enter Valid Input");
 				continue L1;
 				}
 			}
-	           }else{
+	           }else{ 
+				     clearConsole();
 			         System.out.printf("%10s%n","Invalid Input Please Enter Valid Input");
 			         continue PT;
 			         }
@@ -217,35 +239,37 @@ class Example{
 			//Start of the sscl Tax
 			public static void ssclTax(){
 				  Scanner input = new Scanner(System.in);
+				   SSCLL:while(true){
 				  System.out.println("+----------------------------------------------------------------------+");
 	              System.out.println("|            SOCIAL SECURITY CONTRIBUTION LEVY(SSCL) TAX               |");
 	              System.out.println("+----------------------------------------------------------------------+");
-				  SSCLL:while(true){
+				 
 				  System.out.print("Enter value of the good->");
 				  double price = input.nextDouble();
 
 				     if(price>=0){
-						 double st =saleTax(price);
-				  
-				         System.out.printf("%s %.2f%n","After sale tax added->",st+price);
-				  
+						 double st =saleTax(price);				  
 				         double value =vatTax(st,price);
 				  
-				         System.out.printf("%s%.2f%n","After vat tax added->",value);
+				         System.out.printf("%s%.2f%n","You have to pay SSCL Tax->",value);
 				         L1:while(true){
 		                 System.out.print("Do You Want To Calculate SSCL Tax Again(Y/N)");
 		                 String op = input.next().toUpperCase();
 		                 switch(op){
 				          case "Y":
+				          clearConsole();
 				          continue SSCLL;
 				          case "N":
-				          break SSCLL;
+				          clearConsole();
+				          mainMenu();
+				          return;
 				          default:
 				          System.out.println("Please Enter Valid Input");
 				          continue L1;
 				          } 
 		 	           }
 		                  }else{
+						  clearConsole();
 			              System.out.printf("%10s%n","Invalid Input Please Enter Valid Input");
 			              continue SSCLL;
 			  }
@@ -273,6 +297,7 @@ class Example{
 					 calMonthlyInstallment();
 					 break L1;
 					 case 2:
+					 clearConsole();
 					 searchCategory();
 					 break L1;
 					 case 3:
@@ -292,28 +317,31 @@ class Example{
 			 public static void calMonthlyInstallment(){
 				  Scanner input = new Scanner(System.in);
 				  MIL:while(true){
-					  clearConsole();
+				  clearConsole();
 				  System.out.println("+----------------------------------------------------------------------+");
 	              System.out.println("|                 Calculate Monthly Installment                        |");
 	              System.out.println("+----------------------------------------------------------------------+");
 				  System.out.println();
+				 
 				  System.out.print("Enter lease amount         :");
 				  double amount = input.nextDouble();
 				  System.out.print("Enter annual interest rate :");
 				  double rate = input.nextDouble();
-				  System.out.print("Enter number of year       :");
+				  System.out.print("Enter number of year       :");  
 				  int year = input.nextInt();
 				  if(validateLeasePayment(amount,rate,year)){
                         double instalment = findInstalment(amount,rate,year);
-					    System.out.println("Year monthly instalment  :"+instalment);
+					    System.out.printf("%s %.2f %n","Year monthly instalment  :",instalment);
 					     L1:while(true){
 					       System.out.print("Do you want to calculate another monthly instalment (Y/N):");
 						   String op = input.next().toUpperCase();
 						   switch(op){
 				            case "Y":
+				             clearConsole();
 				             continue MIL;
 				            case "N":
 				              clearConsole();
+				              leasingPayment();
 				              return;
 				            default:
 				              System.out.println("Please Enter Valid Input");
@@ -326,19 +354,23 @@ class Example{
 						   String op = input.next().toUpperCase();
 						   switch(op){
 				            case "Y":
+				            clearConsole();
 				             continue MIL;
 				            case "N":
 				              clearConsole();
+				              leasingPayment();
 				              return;
 				            default:
+				             
 				              System.out.println("Please Enter Valid Input");
 				              continue L2;
 				            } 
 							 }
 						 
 						  }
-					  }
-				 }
+					
+					 }
+				}
 			 public static void searchCategory(){
 				  Scanner input = new Scanner(System.in);
 				  SC:while(true){
@@ -352,19 +384,21 @@ class Example{
 				  double rate = input.nextDouble();
 				  if(validateLeasePayment(amount,rate)){
 					double plan1 = findInstalment(amount,rate,3);
-                    System.out.println("Your monthly instalment for 3 year leasing plan - "+plan1);
+                    System.out.printf("%s %.2f %n","Your monthly instalment for 3 year leasing plan - ",plan1);
                     double plan2 = findInstalment(amount,rate,4);
-                    System.out.println("Your monthly instalment for 4 year leasing plan - "+plan2);
+                    System.out.printf("%s %.2f %n","Your monthly instalment for 4 year leasing plan - ",plan2);
                     double plan3 = findInstalment(amount,rate,5);
-                    System.out.println("Your monthly instalment for 5 year leasing plan - "+plan3);
+                    System.out.printf("%s %.2f %n","Your monthly instalment for 5 year leasing plan - ",plan3);
 					     L1:while(true){
 					       System.out.print("Do you want to search leasing category (Y/N):");
 						   String op = input.next().toUpperCase();
 						   switch(op){
 				            case "Y":
+				            clearConsole();
 				             continue SC;
 				            case "N":
 				              clearConsole();
+				              leasingPayment();
 				              return;
 				            default:
 				              System.out.println("Please Enter Valid Input");
@@ -377,11 +411,14 @@ class Example{
 						   String op = input.next().toUpperCase();
 						   switch(op){
 				            case "Y":
+				            clearConsole();
 				             continue SC;
 				            case "N":
 				              clearConsole();
 				              leasingPayment();
+				              return;
 				            default:
+				          
 				              System.out.println("Please Enter Valid Input");
 				              continue L2;
 				            } 
@@ -394,7 +431,7 @@ class Example{
 		     public static void findLeasAmount(){
 				  Scanner input = new Scanner(System.in);
 				  FLA:while(true){
-					   System.out.println("+----------------------------------------------------------------------+");
+			      System.out.println("+----------------------------------------------------------------------+");
 	              System.out.println("|                     Find the Leasing Amount                          |");
 	              System.out.println("+----------------------------------------------------------------------+");
 	              System.out.println();
@@ -406,18 +443,21 @@ class Example{
 				  double rate = input.nextDouble();
 				  
 				  if(validateLeasePayment(amount,rate,year)){
-                        double leaseAmount = calculateLeaseAmount(amount,year,rate);
-					    System.out.println("you can get Lease Amount  :"+leaseAmount);
+                        double leaseAmount = calculateLeaseAmount(amount,rate,year);
+					    System.out.printf("%s %.2f %n","you can get Lease Amount  :",leaseAmount);
 					     L1:while(true){
 					       System.out.print("Do you want to leasing amount again (Y/N):");
 						   String op = input.next().toUpperCase();
 						   switch(op){
 				            case "Y":
+				             clearConsole();
 				             continue FLA;
 				            case "N":
 				              clearConsole();
+				              leasingPayment();
 				              return;
 				            default:
+				              clearConsole();
 				              System.out.println("Please Enter Valid Input");
 				              continue L1;
 				            } 
@@ -428,9 +468,11 @@ class Example{
 						   String op = input.next().toUpperCase();
 						   switch(op){
 				            case "Y":
+				              clearConsole();
 				             continue FLA;
 				            case "N":
 				              clearConsole();
+				              leasingPayment();
 				              return;
 				            default:
 				              System.out.println("Please Enter Valid Input");
@@ -449,7 +491,7 @@ class Example{
                         double instalment =amount*monthlyRate*pow /(pow-1);
                         return instalment;
 					}
-					public static double calculateLeaseAmount(double instalment,int year,double rate){
+					public static double calculateLeaseAmount(double instalment,double rate,int year){
 					   double monthlyRate = rate / 12/100;
                         double pow = Math.pow(1+monthlyRate, year*12);
                        double amount = instalment * (pow - 1) / (monthlyRate * pow);
@@ -457,9 +499,10 @@ class Example{
 					}
 				
 				///////////////////Validation////////////////////
-			public static boolean validateLeasePayment(double amount,double rate, double year){
+			public static boolean validateLeasePayment(double amount,double rate, int year){
 				boolean isValid= true;
-				if(amount<0){
+				 
+					if(amount<0){
 					System.out.println("Invalid amount..Enter the valid amount...");
 					return isValid= false;
 					}else if(rate<0){     
@@ -471,9 +514,14 @@ class Example{
 							}else{
 								return isValid= true;
 								}
+				
+				 
+				
+				
 				}
 				public static boolean validateLeasePayment(double amount,double rate){
 				boolean isValid= true;
+		
 				if(amount<0){
 					System.out.println("Invalid amount..Enter the valid amount...");
 					return isValid= false;
@@ -483,6 +531,9 @@ class Example{
 							}else{
 								return isValid= true;
 								}
+				
+				 
+				
 				}
 				
 				
@@ -551,23 +602,45 @@ class Example{
 			  case 1:
 			  clearConsole();
 			  withHoldingTax();
+			  break;
 			  case 2:
 			  clearConsole();
 			  payableTax();
+			  break;
 			  case 3:
 			  clearConsole();
 			  incomeTax();
+			  break;
 			  case 4:
 			  clearConsole();
 			  ssclTax();
+			  break;
 			  case 5:
 			  clearConsole();
 			  leasingPayment();
+			  break;
 			  case 6:
 			  clearConsole();
 			  return;
 			}
 	 }
+	 
+	 public static void withHoldingTaxHome(){
+		System.out.println("+----------------------------------------------------------------------+");
+	    System.out.println("|                        WITHHOLDING TAX                               |");
+	    System.out.println("+----------------------------------------------------------------------+");
+	
+		System.out.printf("%7s%d%s%n","[",1,"] Rent Tax");
+	    System.out.println();
+	    System.out.printf("%7s%d%s%n","[",2,"] Bank Interest Tax");
+	    System.out.println();
+	    System.out.printf("%7s%d%s%n","[",3,"] Dividend Tax");
+	    System.out.println();
+	    System.out.printf("%7s%d%s%n","[",4,"] Exit");
+	    System.out.println();
+	    System.out.println();
+
+		 }
 	 
 	 	public static void leasingPaymentHome(){
 				 Scanner input = new Scanner(System.in);
