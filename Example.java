@@ -304,11 +304,7 @@ class Example{
 				  System.out.print("Enter number of year       :");
 				  int year = input.nextInt();
 				  if(validateLeasePayment(amount,rate,year)){
-                   
-                        double monthlyRate = rate / 12/100;
-                        double pow = Math.pow(1+monthlyRate, year*12);
-                        double instalment =amount*monthlyRate*pow /(pow-1);
-                        
+                        double instalment = findInstalment(amount,rate,year);
 					    System.out.println("Year monthly instalment  :"+instalment);
 					     L1:while(true){
 					       System.out.print("Do you want to calculate another monthly instalment (Y/N):");
@@ -333,7 +329,7 @@ class Example{
 				             continue MIL;
 				            case "N":
 				              clearConsole();
-				              leasingPayment();
+				              return;
 				            default:
 				              System.out.println("Please Enter Valid Input");
 				              continue L2;
@@ -346,8 +342,6 @@ class Example{
 			 public static void searchCategory(){
 				  Scanner input = new Scanner(System.in);
 				  SC:while(true){
-					  
-					  }
 				  System.out.println("+----------------------------------------------------------------------+");
 	              System.out.println("|                    Search Leasing Category                           |");
 	              System.out.println("+----------------------------------------------------------------------+");
@@ -357,18 +351,69 @@ class Example{
 				  System.out.print("Enter annual interest rate :");
 				  double rate = input.nextDouble();
 				  if(validateLeasePayment(amount,rate)){
-                   
-                        double monthlyRate = rate / 12/100;
-                        double pow = Math.pow(1+monthlyRate, year*12);
-                        double instalment =amount*monthlyRate*pow /(pow-1);
-                        
-					    System.out.println("Year monthly instalment  :"+instalment);
+					double plan1 = findInstalment(amount,rate,3);
+                    System.out.println("Your monthly instalment for 3 year leasing plan - "+plan1);
+                    double plan2 = findInstalment(amount,rate,4);
+                    System.out.println("Your monthly instalment for 4 year leasing plan - "+plan2);
+                    double plan3 = findInstalment(amount,rate,5);
+                    System.out.println("Your monthly instalment for 5 year leasing plan - "+plan3);
 					     L1:while(true){
-					       System.out.print("Do you want to calculate another monthly instalment (Y/N):");
+					       System.out.print("Do you want to search leasing category (Y/N):");
 						   String op = input.next().toUpperCase();
 						   switch(op){
 				            case "Y":
-				             continue MIL;
+				             continue SC;
+				            case "N":
+				              clearConsole();
+				              return;
+				            default:
+				              System.out.println("Please Enter Valid Input");
+				              continue L1;
+				            } 
+							 }
+					  }else{
+						 L2:while(true){
+					       System.out.print("Do you want to search another leasing category (Y/N):");
+						   String op = input.next().toUpperCase();
+						   switch(op){
+				            case "Y":
+				             continue SC;
+				            case "N":
+				              clearConsole();
+				              leasingPayment();
+				            default:
+				              System.out.println("Please Enter Valid Input");
+				              continue L2;
+				            } 
+							 }
+						 
+						  }
+					  }
+				  
+				 }
+		     public static void findLeasAmount(){
+				  Scanner input = new Scanner(System.in);
+				  FLA:while(true){
+					   System.out.println("+----------------------------------------------------------------------+");
+	              System.out.println("|                     Find the Leasing Amount                          |");
+	              System.out.println("+----------------------------------------------------------------------+");
+	              System.out.println();
+                  System.out.print("Enter the monthly lease payment amount you can afford:");
+				  double amount = input.nextDouble();
+				  System.out.print("Enter number of year       :");
+				  int year = input.nextInt();
+				  System.out.print("Enter annual interest rate :");
+				  double rate = input.nextDouble();
+				  
+				  if(validateLeasePayment(amount,rate,year)){
+                        double leaseAmount = calculateLeaseAmount(amount,year,rate);
+					    System.out.println("you can get Lease Amount  :"+leaseAmount);
+					     L1:while(true){
+					       System.out.print("Do you want to leasing amount again (Y/N):");
+						   String op = input.next().toUpperCase();
+						   switch(op){
+				            case "Y":
+				             continue FLA;
 				            case "N":
 				              clearConsole();
 				              return;
@@ -383,10 +428,10 @@ class Example{
 						   String op = input.next().toUpperCase();
 						   switch(op){
 				            case "Y":
-				             continue MIL;
+				             continue FLA;
 				            case "N":
 				              clearConsole();
-				              leasingPayment();
+				              return;
 				            default:
 				              System.out.println("Please Enter Valid Input");
 				              continue L2;
@@ -394,33 +439,22 @@ class Example{
 							 }
 						 
 						  }
-				 }
-		     public static void findLeasAmount(){
-				  Scanner input = new Scanner(System.in);
-				  System.out.println("+----------------------------------------------------------------------+");
-	              System.out.println("|                     Find Leasing Category                            |");
-	              System.out.println("+----------------------------------------------------------------------+");
-	              System.out.println();
-
-				 
+					  }
 				 }
 			 
-			public static void leasingPaymentHome(){
-				 Scanner input = new Scanner(System.in);
-				  System.out.println("+----------------------------------------------------------------------+");
-	              System.out.println("|                        Leasing Payment                               |");
-	              System.out.println("+----------------------------------------------------------------------+");
-	              System.out.println();
-	               System.out.printf("%7s%d%s%n","[",1,"] Calculate Monthly Installment");
-	               System.out.println();
-	               System.out.printf("%7s%d%s%n","[",2,"] Search Leasing Category");
-	               System.out.println();
-	               System.out.printf("%7s%d%s%n","[",3,"] Find Leasing Amount");
-	               System.out.println();
-	               System.out.printf("%7s%d%s%n","[",4,"] Exit");
-	               System.out.println();
-	              
-				}
+		        ///////////////////Calculations in leasing payment///////////////////
+		        public static double findInstalment(double amount,double rate,int year){
+					   double monthlyRate = rate / 12/100;
+                        double pow = Math.pow(1+monthlyRate, year*12);
+                        double instalment =amount*monthlyRate*pow /(pow-1);
+                        return instalment;
+					}
+					public static double calculateLeaseAmount(double instalment,int year,double rate){
+					   double monthlyRate = rate / 12/100;
+                        double pow = Math.pow(1+monthlyRate, year*12);
+                       double amount = instalment * (pow - 1) / (monthlyRate * pow);
+                        return amount;
+					}
 				
 				///////////////////Validation////////////////////
 			public static boolean validateLeasePayment(double amount,double rate, double year){
@@ -467,6 +501,9 @@ class Example{
 			          //Handle any exceptions.
 		           }
 	         }	 
+	         
+	         
+	         
 	         
 	         
 	         ///////////////////////Menus//////////////////////////
@@ -530,7 +567,24 @@ class Example{
 			  clearConsole();
 			  return;
 			}
-				 }
+	 }
+	 
+	 	public static void leasingPaymentHome(){
+				 Scanner input = new Scanner(System.in);
+				  System.out.println("+----------------------------------------------------------------------+");
+	              System.out.println("|                        Leasing Payment                               |");
+	              System.out.println("+----------------------------------------------------------------------+");
+	              System.out.println();
+	               System.out.printf("%7s%d%s%n","[",1,"] Calculate Monthly Installment");
+	               System.out.println();
+	               System.out.printf("%7s%d%s%n","[",2,"] Search Leasing Category");
+	               System.out.println();
+	               System.out.printf("%7s%d%s%n","[",3,"] Find Leasing Amount");
+	               System.out.println();
+	               System.out.printf("%7s%d%s%n","[",4,"] Exit");
+	               System.out.println();
+	              
+				}
 				 
 			
   }
