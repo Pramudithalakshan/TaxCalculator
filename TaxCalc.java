@@ -1,10 +1,11 @@
 import java.util.*;
-class Example{
+class TaxCalc{
   public static void main(String args[]){
 	    mainMenu();
 	  } //End of the main method
-	 
-	  public static void withHoldingTax(){                                //Start of the withHodingTax method 
+	  
+	  //Start of the withHodingTax method 
+	  public static void withHoldingTax(){                                
 	    Scanner input = new Scanner(System.in);
 	    L1:while(true){
 	    withHoldingTaxHome();
@@ -49,7 +50,7 @@ class Example{
 		  if(payment>0 ){
 		    System.out.println(payment<100000?"\tYou don't have to pay Rent Tax...":"Tax amount ->"+((payment-100000)*0.1)); 
 		    L1:while(true){
-		    System.out.print("Do You Want To Calculate Rent Tax Again(Y/N)");
+		    System.out.print("Do You Want To Calculate Rent Tax Again(Y/N)->");
 		    String op = input.next().toUpperCase();
 		    switch(op){
 				case "Y":
@@ -85,7 +86,7 @@ class Example{
 		  if(interest>0 ){
 		    System.out.println("You have to pay Bank Interest Tax per year->"+interest*0.05); 
 		    L1:while(true){
-		    System.out.print("Do You Want To Calculate Interest Tax Again(Y/N)");
+		    System.out.print("Do You Want To Calculate Interest Tax Again(Y/N)->");
 		    String op = input.next().toUpperCase();
 		    switch(op){
 				case "Y":
@@ -118,9 +119,9 @@ class Example{
 		  System.out.print("Enter Dividend ->");
 		  double payment = input.nextInt();
 		  if(payment>0 ){
-		    System.out.println(payment<100000?"You don’t have to pay Dividend Tax….":"Tax amount ->"+(payment-100000)*0.14); 
+		    System.out.println(payment<100000?"You don’t have to pay Dividend Tax….":"Tax amount ->"+Math.round((payment-100000)*0.14)); 
 		    L1:while(true){
-		    System.out.print("Do You Want To Calculate Dividend Tax Again(Y/N)");
+		    System.out.print("Do You Want To Calculate Dividend Tax Again(Y/N)->");
 		    String op = input.next().toUpperCase();
 		    switch(op){
 				case "Y":
@@ -166,7 +167,7 @@ class Example{
 			 :salary<=225000?"Tax amount->"+((salary-sd)*0.18-7500):salary<=266667?"Tax amount->"+((salary-sd)*0.24-15000)
 			 :salary<=308333?"Tax amount->"+((salary-sd)*0.3-25000):"Tax amount->"+((salary-sd)*0.36-37500));
 			L1:while(true){
-		    System.out.print("Do You Want To Calculate Dividend Tax Again(Y/N)");
+		    System.out.print("Do You Want To Calculate Dividend Tax Again(Y/N)->");
 		    String op = input.next().toUpperCase();
 		    switch(op){
 				case "Y":
@@ -212,7 +213,7 @@ class Example{
 			 :income<=3700000?"Tax amount->"+((income-sd)*0.3-300000)
 			 :"Tax amount->"+((income-sd)*0.36-450000));
 			L1:while(true){
-		    System.out.print("Do You Want To Calculate Dividend Tax Again(Y/N)");
+		    System.out.print("Do You Want To Calculate Dividend Tax Again(Y/N)->");
 		    String op = input.next().toUpperCase();
 		    switch(op){
 				case "Y":
@@ -253,7 +254,7 @@ class Example{
 				  
 				         System.out.printf("%s%.2f%n","You have to pay SSCL Tax->",value);
 				         L1:while(true){
-		                 System.out.print("Do You Want To Calculate SSCL Tax Again(Y/N)");
+		                 System.out.print("Do You Want To Calculate SSCL Tax Again(Y/N)->");
 		                 String op = input.next().toUpperCase();
 		                 switch(op){
 				          case "Y":
@@ -333,7 +334,7 @@ class Example{
                         double instalment = findInstalment(amount,rate,year);
 					    System.out.printf("%s %.2f %n","Year monthly instalment  :",instalment);
 					     L1:while(true){
-					       System.out.print("Do you want to calculate another monthly instalment (Y/N):");
+					       System.out.print("Do you want to calculate another monthly instalment (Y/N)->");
 						   String op = input.next().toUpperCase();
 						   switch(op){
 				            case "Y":
@@ -350,7 +351,7 @@ class Example{
 							 }
 					  }else{
 						 L2:while(true){
-					       System.out.print("Do you want to calculate another monthly instalment (Y/N):");
+					       System.out.print("Do you want to calculate another monthly instalment (Y/N)->");
 						   String op = input.next().toUpperCase();
 						   switch(op){
 				            case "Y":
@@ -390,7 +391,7 @@ class Example{
                     double plan3 = findInstalment(amount,rate,5);
                     System.out.printf("%s %.2f %n","Your monthly instalment for 5 year leasing plan - ",plan3);
 					     L1:while(true){
-					       System.out.print("Do you want to search leasing category (Y/N):");
+					       System.out.print("Do you want to search leasing category (Y/N)->");
 						   String op = input.next().toUpperCase();
 						   switch(op){
 				            case "Y":
@@ -407,7 +408,7 @@ class Example{
 							 }
 					  }else{
 						 L2:while(true){
-					       System.out.print("Do you want to search another leasing category (Y/N):");
+					       System.out.print("Do you want to search another leasing category (Y/N)->");
 						   String op = input.next().toUpperCase();
 						   switch(op){
 				            case "Y":
@@ -446,7 +447,7 @@ class Example{
                         double leaseAmount = calculateLeaseAmount(amount,rate,year);
 					    System.out.printf("%s %.2f %n","you can get Lease Amount  :",leaseAmount);
 					     L1:while(true){
-					       System.out.print("Do you want to leasing amount again (Y/N):");
+					       System.out.print("Do you want to leasing amount again (Y/N)->");
 						   String op = input.next().toUpperCase();
 						   switch(op){
 				            case "Y":
@@ -464,7 +465,7 @@ class Example{
 							 }
 					  }else{
 						 L2:while(true){
-					       System.out.print("Do you want to calculate another monthly instalment (Y/N):");
+					       System.out.print("Do you want to calculate another monthly instalment (Y/N)->");
 						   String op = input.next().toUpperCase();
 						   switch(op){
 				            case "Y":
@@ -530,9 +531,7 @@ class Example{
 					     return isValid= false;	
 							}else{
 								return isValid= true;
-								}
-				
-				 
+								} 
 				
 				}
 				
